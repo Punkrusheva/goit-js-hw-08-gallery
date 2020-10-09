@@ -42,18 +42,22 @@ refs.lightboxOverlay.addEventListener("click", onOverlayClick);
 function onOpenModal(evt) {
   evt.preventDefault()
   window.addEventListener("keydown", onEscKeyPress);
-  refs.openModal.classList.add("is-open");
-  console.log(`Модалка открыта`);
-  //console.log(evt.target);
+  if (evt.target.nodeName !== 'IMG') { console.log(evt.target.nodeName); return; }
+  //console.log(evt.target.nodeName)
+  {
+    refs.openModal.classList.add("is-open");
+    console.log(`Модалка открыта`);
+    //console.log(evt.target);
 
-  refs.modalOpenGalleryItem.setAttribute(
-    "src",
-    `${evt.target.getAttribute("data-source")}`
-  );
-  refs.modalOpenGalleryItem.setAttribute(
-    "alt",
-    `${evt.target.getAttribute("alt")}`
-  );
+    refs.modalOpenGalleryItem.setAttribute(
+      "src",
+      `${evt.target.getAttribute("data-source")}`
+    );
+    refs.modalOpenGalleryItem.setAttribute(
+      "alt",
+      `${evt.target.getAttribute("alt")}`
+    );
+  }
 }
 
 function onCloseModal() {
