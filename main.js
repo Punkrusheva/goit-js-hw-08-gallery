@@ -19,7 +19,7 @@ function createGalleryCardsMarkup(imageRef) {
       <li class="gallery__item">
         <a
           class="gallery__link"
-          
+          href="${original}"
           >
           <img
             class="gallery__image"
@@ -40,6 +40,7 @@ refs.lightboxOverlay.addEventListener("click", onOverlayClick);
 //refs.galleryContainer.removeAttribute("href");
 
 function onOpenModal(evt) {
+  evt.preventDefault()
   window.addEventListener("keydown", onEscKeyPress);
   refs.openModal.classList.add("is-open");
   console.log(`Модалка открыта`);
