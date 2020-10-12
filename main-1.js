@@ -6,8 +6,8 @@ const refs = {
   galleryContainer: document.querySelector(".js-gallery"),
   modalOpenGalleryItem: document.querySelector(".lightbox__image"),
   lightboxOverlay: document.querySelector(".lightbox__overlay"),
-  modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
-  modalNextPhoto: document.querySelector("button.lightbox__next__button"),
+  /*modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
+  modalNextPhoto: document.querySelector("button.lightbox__next__button"),*/
   
 };
 
@@ -49,40 +49,34 @@ refs.lightboxOverlay.addEventListener("click", onOverlayClick);
 function onOpenModal(evt) {
   evt.preventDefault()
   window.addEventListener("keydown", onEscKeyPress);
-  refs.modalPreviousPhoto.addEventListener("click", onPreviousPhoto);
-  refs.modalNextPhoto.addEventListener("click", onNextPhoto);
-
-function onPreviousPhoto() {
-      console.log('Prev');
-      let prev = evt.target.parentNode.parentNode.previousSibling.children[0].children[0];
-      //console.log(evt.target);
-      refs.modalOpenGalleryItem.setAttribute(
-      "src",
-      `${prev.getAttribute("data-source")}`
-    );
-    refs.modalOpenGalleryItem.setAttribute(
-      "alt",
-      `${prev.getAttribute("alt")}`
-    );
-    console.log(refs.modalOpenGalleryItem);
-    return refs.modalOpenGalleryItem;
-  }
-  function onNextPhoto() {
-    console.log('Next');
-    let next = evt.target.parentNode.parentNode.nextSibling.children[0].children[0];
+  window.addEventListener("keydown", onArrowRightKeyPress);
+  /*refs.modalPreviousPhoto.addEventListener("click", onArrowRightKeyPress);
+  refs.modalNextPhoto.addEventListener("click", onArrowRightKeyPress);*/
   
-      refs.modalOpenGalleryItem.setAttribute(
-      "src",
-      `${next.getAttribute("data-source")}`
-    );
-    refs.modalOpenGalleryItem.setAttribute(
-      "alt",
-      `${next.getAttribute("alt")}`
-    );
-    console.log(refs.modalOpenGalleryItem);
-    return refs.modalOpenGalleryItem;
-  }
+  let imagesOriginalArr = [];
+  imageRef.forEach((item) => {
+  imagesOriginalArr.push(item.original);
+  });
+  //console.log(imagesOriginalArr);
 
+ function onArrowRightKeyPress(e) {
+  let index = imagesOriginalArr.indexOf(refs.modalOpenGalleryItem.src);
+  if (e.code === `ArrowRight`) {
+    if (index < imagesOriginalArr.length - 1) {
+      refs.modalOpenGalleryItem.setAttribute("src", imagesOriginalArr[index + 1]);
+    } else {
+      index = -1;
+      refs.modalOpenGalleryItem.setAttribute("src", imagesOriginalArr[index + 1]);
+    }
+  }
+  if (e.code === `ArrowLeft`) {
+    if (index === 0) {
+      index = imagesOriginalArr.length;
+      refs.modalOpenGalleryItem.setAttribute("src", imagesOriginalArr[index - 1]);
+    } else refs.modalOpenGalleryItem.setAttribute("src", imagesOriginalArr[index - 1]);
+  }
+  }
+  
   if (evt.target.nodeName !== 'IMG') { console.log(evt.target.nodeName); return; }
   {
     refs.openModal.classList.add("is-open");
@@ -96,7 +90,6 @@ function onPreviousPhoto() {
       "alt",
       `${evt.target.getAttribute("alt")}`
     );
-    console.log(refs.modalOpenGalleryItem);
   };
 }
 
