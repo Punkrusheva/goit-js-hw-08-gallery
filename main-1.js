@@ -65,8 +65,6 @@ function onOpenModal(evt) {
       "alt",
       `${evt.target.getAttribute("alt")}`
     );
-    onPreviousPhoto(evt.target);
-    onNextPhoto(evt.target);
   };
   function onPreviousPhoto() {
       console.log('Prev');
