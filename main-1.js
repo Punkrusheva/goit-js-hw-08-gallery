@@ -8,8 +8,8 @@ const refs = {
   lightboxOverlay: document.querySelector(".lightbox__overlay"),
   modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
   modalNextPhoto: document.querySelector("button.lightbox__next__button"),
+  
 };
-//console.log(imageRef[1].original);
 
 const galleryMarkap = createGalleryCardsMarkup(imageRef);
 
@@ -51,7 +51,38 @@ function onOpenModal(evt) {
   window.addEventListener("keydown", onEscKeyPress);
   refs.modalPreviousPhoto.addEventListener("click", onPreviousPhoto);
   refs.modalNextPhoto.addEventListener("click", onNextPhoto);
+
+function onPreviousPhoto() {
+      console.log('Prev');
+      let prev = evt.target.parentNode.parentNode.previousSibling.children[0].children[0];
+      //console.log(evt.target);
+      refs.modalOpenGalleryItem.setAttribute(
+      "src",
+      `${prev.getAttribute("data-source")}`
+    );
+    refs.modalOpenGalleryItem.setAttribute(
+      "alt",
+      `${prev.getAttribute("alt")}`
+    );
+    console.log(refs.modalOpenGalleryItem);
+    return refs.modalOpenGalleryItem;
+  }
+  function onNextPhoto() {
+    console.log('Next');
+    let next = evt.target.parentNode.parentNode.nextSibling.children[0].children[0];
   
+      refs.modalOpenGalleryItem.setAttribute(
+      "src",
+      `${next.getAttribute("data-source")}`
+    );
+    refs.modalOpenGalleryItem.setAttribute(
+      "alt",
+      `${next.getAttribute("alt")}`
+    );
+    console.log(refs.modalOpenGalleryItem);
+    return refs.modalOpenGalleryItem;
+  }
+
   if (evt.target.nodeName !== 'IMG') { console.log(evt.target.nodeName); return; }
   {
     refs.openModal.classList.add("is-open");
@@ -65,33 +96,8 @@ function onOpenModal(evt) {
       "alt",
       `${evt.target.getAttribute("alt")}`
     );
+    console.log(refs.modalOpenGalleryItem);
   };
-  function onPreviousPhoto() {
-      console.log('Prev');
-      let prev = evt.target.parentNode.parentNode.previousSibling.children[0].children[0];
-         console.log(prev);
-      refs.modalOpenGalleryItem.setAttribute(
-      "src",
-      `${prev.getAttribute("data-source")}`
-    );
-    refs.modalOpenGalleryItem.setAttribute(
-      "alt",
-      `${prev.getAttribute("alt")}`
-    );
-    }
-    function onNextPhoto() {
-      console.log('Next');
-      let next = evt.target.parentNode.parentNode.nextSibling.children[0].children[0];
-      console.log(next);
-      refs.modalOpenGalleryItem.setAttribute(
-      "src",
-      `${next.getAttribute("data-source")}`
-    );
-    refs.modalOpenGalleryItem.setAttribute(
-      "alt",
-      `${next.getAttribute("alt")}`
-      );
-    }
 }
 
 function onCloseModal() {
