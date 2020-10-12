@@ -137,7 +137,7 @@ body {
 .lightbox__prev__button {
   position: absolute;
   top: 50%;
-  left: 12px;
+  left: -12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,7 +160,7 @@ body {
 .lightbox__next__button {
   position: absolute;
   top: 50%;
-  right: 18px;
+  right: -18px;
   display: flex;
   align-items: center;
   justify-content: center;
