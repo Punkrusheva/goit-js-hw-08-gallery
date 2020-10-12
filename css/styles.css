@@ -137,17 +137,17 @@ body {
 .lightbox__prev__button {
   position: absolute;
   top: 50%;
-  left: -12px;
+  left: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   margin: 0;
   border: none;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: tomato;
   color: #fff;
   cursor: pointer;
   transition: background-color var(--animation-duration) var(--timing-function);
@@ -160,17 +160,17 @@ body {
 .lightbox__next__button {
   position: absolute;
   top: 50%;
-  right: -18px;
+  right: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   margin: 0;
   border: none;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: tomato;
   color: #fff;
   cursor: pointer;
   transition: background-color var(--animation-duration) var(--timing-function);
