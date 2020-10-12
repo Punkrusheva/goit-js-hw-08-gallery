@@ -4,37 +4,44 @@ const refs = {
   openModal: document.querySelector("div.lightbox"),
   closeModal: document.querySelector("button.lightbox__button"),
   galleryContainer: document.querySelector(".js-gallery"),
-  gallery: document.querySelectorAll(".js-gallery"),
   modalOpenGalleryItem: document.querySelector(".lightbox__image"),
   lightboxOverlay: document.querySelector(".lightbox__overlay"),
   /*modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
   modalNextPhoto: document.querySelector("button.lightbox__next__button"),*/
 };
+//console.log(imageRef[1].original);
+
 const galleryMarkap = createGalleryCardsMarkup(imageRef);
 
-refs.galleryContainer.insertAdjacentHTML("beforeend", galleryMarkap);
-   
-function createGalleryCardsMarkup({ preview, original, description }) {
-  return imageRef
-    .map(({ preview, original, description }) => {
-      return `
-      <li class="gallery__item">
-        <a
-          class="gallery__link"
-          href="${original}"
-          >
-          <img
-            class="gallery__image"
-            src="${preview}"
-            data-source="${original}"
-            alt="${description}"
-          />
-        </a>
-      </li>`;
-    })
-    .join(``);
-}
+function createGalleryCardsMarkup(imageRef) {
+  const elements = [];
+  for (let i = 0; i < imageRef.length; i += 1) {
+    const option = imageRef[i];
+    //console.log(imageRef[i]);
+    let galleryEl = document.createElement('li');
+    galleryEl.setAttribute('class', `gallery__item`);
 
+    const galleryA = document.createElement("a");
+    galleryA.setAttribute('class', `gallery__link`);
+    galleryA.setAttribute('href', `${imageRef[i].original}`);
+
+    const galleryImg = document.createElement("img");
+    galleryImg.setAttribute('class', `gallery__image`);
+    galleryImg.setAttribute('src', `${imageRef[i].preview}`);
+    galleryImg.setAttribute('data-source', `${imageRef[i].original}`);
+    galleryImg.setAttribute('alt', `${imageRef[i].description}`);
+
+    galleryEl.append(galleryA);
+    galleryA.append(galleryImg);
+    elements.push(galleryEl);
+    //console.log(galleryEl);
+    //console.log(elements);
+  }
+
+  return refs.galleryContainer.append(...elements);
+}
+createGalleryCardsMarkup(imageRef);
+   
 refs.galleryContainer.addEventListener("click", onOpenModal);
 refs.closeModal.addEventListener("click", onCloseModal);
 refs.lightboxOverlay.addEventListener("click", onOverlayClick);

@@ -113,7 +113,7 @@ body {
 .lightbox__button {
   position: absolute;
   top: 8px;
-  right: 8px;
+  right: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,6 +129,53 @@ body {
   transition: background-color var(--animation-duration) var(--timing-function);
   outline: none;
   background-image: url("../images/icon-close.svg");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.lightbox__prev__button {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+  background-image: url("../images/icon-left.svg");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+.lightbox__next__button {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+  background-image: url("../images/icon-right.svg");
   background-position: center;
   background-size: 60%;
   background-repeat: no-repeat;
