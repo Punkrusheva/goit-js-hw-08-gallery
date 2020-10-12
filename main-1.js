@@ -6,8 +6,8 @@ const refs = {
   galleryContainer: document.querySelector(".js-gallery"),
   modalOpenGalleryItem: document.querySelector(".lightbox__image"),
   lightboxOverlay: document.querySelector(".lightbox__overlay"),
-  /*modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
-  modalNextPhoto: document.querySelector("button.lightbox__next__button"),*/
+  modalPreviousPhoto: document.querySelector("button.lightbox__prev__button"),
+  modalNextPhoto: document.querySelector("button.lightbox__next__button"),
 };
 //console.log(imageRef[1].original);
 
@@ -49,6 +49,8 @@ refs.lightboxOverlay.addEventListener("click", onOverlayClick);
 function onOpenModal(evt) {
   evt.preventDefault()
   window.addEventListener("keydown", onEscKeyPress);
+  refs.modalPreviousPhoto.addEventListener("click", onPreviousPhoto);
+  refs.modalNextPhoto.addEventListener("click", onNextPhoto);
   
   if (evt.target.nodeName !== 'IMG') { console.log(evt.target.nodeName); return; }
   {
@@ -63,19 +65,35 @@ function onOpenModal(evt) {
       "alt",
       `${evt.target.getAttribute("alt")}`
     );
-    /*refs.modalPreviousPhoto.addEventListener("click", onPreviousPhoto);
-    refs.modalNextPhoto.addEventListener("click", onNextPhoto);
-    function onPreviousPhoto() {
+    onPreviousPhoto(evt.target);
+    onNextPhoto(evt.target);
+  };
+  function onPreviousPhoto() {
       console.log('Prev');
-      console.log(evt.target.parentNode.parentNode.previousSibling);
-    //console.log(refs.modalOpenGalleryItem.nextSibling);
+      let prev = evt.target.parentNode.parentNode.previousSibling.children[0].children[0];
+         console.log(prev);
+      refs.modalOpenGalleryItem.setAttribute(
+      "src",
+      `${prev.getAttribute("data-source")}`
+    );
+    refs.modalOpenGalleryItem.setAttribute(
+      "alt",
+      `${prev.getAttribute("alt")}`
+    );
     }
     function onNextPhoto() {
       console.log('Next');
-      console.log(evt.target.parentNode.parentNode.nextSibling);
-    //console.log(refs.modalOpenGalleryItem.nextSibling);
-    }*/
-  }
+      let next = evt.target.parentNode.parentNode.nextSibling.children[0].children[0];
+      console.log(next);
+      refs.modalOpenGalleryItem.setAttribute(
+      "src",
+      `${next.getAttribute("data-source")}`
+    );
+    refs.modalOpenGalleryItem.setAttribute(
+      "alt",
+      `${next.getAttribute("alt")}`
+      );
+    }
 }
 
 function onCloseModal() {
